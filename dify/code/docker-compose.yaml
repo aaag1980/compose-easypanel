@@ -283,8 +283,8 @@ services:
       interval: 1s
       timeout: 3s
       retries: 30
-    ports:
-      - "15433:15433"      
+#    ports:
+#      - "15433:15433"      
 
   # The redis cache.
   redis:

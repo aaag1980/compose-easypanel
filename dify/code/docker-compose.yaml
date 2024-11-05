@@ -1,4 +1,5 @@
 x-shared-env: &shared-api-worker-env
+  DIFY_VERSION: ${DIFY_VERSION:-0.11.0}
   LOG_LEVEL: ${LOG_LEVEL:-INFO}
   LOG_FILE: ${LOG_FILE:-}
   DEBUG: ${DEBUG:-false}
@@ -213,7 +214,7 @@ x-shared-env: &shared-api-worker-env
 services:
   # API service
   api:
-    image: langgenius/dify-api:0.10.2
+    image: langgenius/dify-api:${DIFY_VERSION:-0.11.0}
     restart: always
     environment:
       # Use the shared environment variables.
@@ -233,7 +234,7 @@ services:
   # worker service
   # The Celery worker for processing the queue.
   worker:
-    image: langgenius/dify-api:0.10.2
+    image: langgenius/dify-api:${DIFY_VERSION:-0.11.0}
     restart: always
     environment:
       # Use the shared environment variables.
@@ -252,7 +253,7 @@ services:
 
   # Frontend web application.
   web:
-    image: langgenius/dify-web:0.10.2
+    image: langgenius/dify-web:${DIFY_VERSION:-0.11.0}
     restart: always
     environment:
       CONSOLE_API_URL: ${CONSOLE_API_URL:-}

@@ -213,7 +213,7 @@ x-shared-env: &shared-api-worker-env
 services:
   # API service
   api:
-    image: langgenius/dify-api:0.14.1
+    image: langgenius/dify-api:0.15.0
     restart: always
     environment:
       # Use the shared environment variables.
@@ -221,7 +221,7 @@ services:
       # Startup mode, 'api' starts the API server.
       MODE: api
     depends_on:
-      - db
+      #- db
       - redis
     volumes:
       # Mount the storage directory to the container, for storing user files.
@@ -233,7 +233,7 @@ services:
   # worker service
   # The Celery worker for processing the queue.
   worker:
-    image: langgenius/dify-api:0.14.1
+    image: langgenius/dify-api:0.15.0
     restart: always
     environment:
       # Use the shared environment variables.
@@ -241,7 +241,7 @@ services:
       # Startup mode, 'worker' starts the Celery worker for processing the queue.
       MODE: worker
     depends_on:
-      - db
+      #- db
       - redis
     volumes:
       # Mount the storage directory to the container, for storing user files.
@@ -252,7 +252,7 @@ services:
 
   # Frontend web application.
   web:
-    image: langgenius/dify-web:0.14.1
+    image: langgenius/dify-web:0.15.0
     restart: always
     environment:
       CONSOLE_API_URL: ${CONSOLE_API_URL:-}
@@ -262,27 +262,27 @@ services:
       TEXT_GENERATION_TIMEOUT_MS: ${TEXT_GENERATION_TIMEOUT_MS:-60000}
 
   # The postgres database.
-  db:
-    image: postgres:15-alpine
-    restart: always
-    environment:
-      PGUSER: ${PGUSER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-difyai123456}
-      POSTGRES_DB: ${POSTGRES_DB:-dify}
-      PGDATA: ${PGDATA:-/var/lib/postgresql/data/pgdata}
-    command: >
-      postgres -c 'max_connections=${POSTGRES_MAX_CONNECTIONS:-100}'
-               -c 'shared_buffers=${POSTGRES_SHARED_BUFFERS:-128MB}'
-               -c 'work_mem=${POSTGRES_WORK_MEM:-4MB}'
-               -c 'maintenance_work_mem=${POSTGRES_MAINTENANCE_WORK_MEM:-64MB}'
-               -c 'effective_cache_size=${POSTGRES_EFFECTIVE_CACHE_SIZE:-4096MB}'
-    volumes:
-      - ./volumes/db/data:/var/lib/postgresql/data
-    healthcheck:
-      test: [ "CMD", "pg_isready" ]
-      interval: 1s
-      timeout: 3s
-      retries: 30
+  #db:
+  #  image: postgres:15-alpine
+  #  restart: always
+  #  environment:
+  #    PGUSER: ${PGUSER:-postgres}
+  #    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-difyai123456}
+  #    POSTGRES_DB: ${POSTGRES_DB:-dify}
+  #    PGDATA: ${PGDATA:-/var/lib/postgresql/data/pgdata}
+  #  command: >
+  #    postgres -c 'max_connections=${POSTGRES_MAX_CONNECTIONS:-100}'
+  #             -c 'shared_buffers=${POSTGRES_SHARED_BUFFERS:-128MB}'
+  #             -c 'work_mem=${POSTGRES_WORK_MEM:-4MB}'
+  #             -c 'maintenance_work_mem=${POSTGRES_MAINTENANCE_WORK_MEM:-64MB}'
+  #             -c 'effective_cache_size=${POSTGRES_EFFECTIVE_CACHE_SIZE:-4096MB}'
+  #  volumes:
+  #    - ./volumes/db/data:/var/lib/postgresql/data
+  #  healthcheck:
+  #    test: [ "CMD", "pg_isready" ]
+  #    interval: 1s
+  #    timeout: 3s
+  #    retries: 30
 #    ports:
 #      - "5432:5432"      
 
@@ -427,15 +427,15 @@ services:
 
   # Qdrant vector store.
   # (if used, you need to set VECTOR_STORE to qdrant in the api & worker service.)
-  qdrant:
-    image: langgenius/qdrant:v1.7.3
-    profiles:
-      - qdrant
-    restart: always
-    volumes:
-      - ./volumes/qdrant:/qdrant/storage
-    environment:
-      QDRANT_API_KEY: ${QDRANT_API_KEY:-difyai123456}
+  #qdrant:
+  #  image: langgenius/qdrant:v1.7.3
+  #  profiles:
+  #    - qdrant
+  #  restart: always
+  #  volumes:
+  #    - ./volumes/qdrant:/qdrant/storage
+  #  environment:
+  #    QDRANT_API_KEY: ${QDRANT_API_KEY:-difyai123456}
 
   # The pgvector vector database.
   pgvector:

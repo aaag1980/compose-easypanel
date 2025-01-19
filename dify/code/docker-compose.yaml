@@ -507,7 +507,7 @@ services:
       timeout: 3s
       retries: 30
     ports:
-      - '${EXPOSE_DB_PORT:-5432}:5432'
+      - '${EXPOSE_DB_PORT:-5433}:5433'
 
   # The redis cache.
   redis:

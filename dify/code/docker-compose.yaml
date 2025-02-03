@@ -260,7 +260,7 @@ services:
       SENTRY_DSN: ${WEB_SENTRY_DSN:-}
       NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-0}
       TEXT_GENERATION_TIMEOUT_MS: ${TEXT_GENERATION_TIMEOUT_MS:-60000}
-    entrypoint: ["/bin/sh", "-c", "wget -O /app/web/public/logo/logo-site.png https://s3.imsbrasil.com/teste/AF_MINSAIT_LOG_RGB_POS.png && wget -O /app/web/public/logo/logo-site-dark.png https://s3.imsbrasil.com/teste/AF_MINSAIT_LOG_RGB_NEG.png && wget -O /app/web/public/logo/logo-embedded-chat-header.png https://s3.imsbrasil.com/teste/AF_MINSAIT_SIM_RGB_POS.png && wget -O /app/web/public/logo/logo-embedded-chat-avatar.png https://s3.imsbrasil.com/teste/minbot-2.png && wget -O /app/web/public/favicon.ico https://s3.imsbrasil.com/teste/minsait_new.ico && exec \"$@\"", "--"]  
+    #entrypoint: ["/bin/sh", "-c", "wget -O /app/web/public/logo/logo-site.png https://s3.imsbrasil.com/teste/AF_MINSAIT_LOG_RGB_POS.png && wget -O /app/web/public/logo/logo-site-dark.png https://s3.imsbrasil.com/teste/AF_MINSAIT_LOG_RGB_NEG.png && wget -O /app/web/public/logo/logo-embedded-chat-header.png https://s3.imsbrasil.com/teste/AF_MINSAIT_SIM_RGB_POS.png && wget -O /app/web/public/logo/logo-embedded-chat-avatar.png https://s3.imsbrasil.com/teste/minbot-2.png && wget -O /app/web/public/favicon.ico https://s3.imsbrasil.com/teste/minsait_new.ico && exec \"$@\"", "--"]  
 
   # The postgres database.
   #db:

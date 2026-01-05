@@ -223,7 +223,8 @@ services:
     depends_on:
       - db
       - redis
-    user: "1001:1001"  # Adicione esta linha
+    #user: "1001:1001"  # Adicione esta linha
+    user: "0:0"  # <--- ADICIONE ESTA LINHA
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
@@ -231,8 +232,7 @@ services:
     networks:
       - ssrf_proxy_network
       - default
-    security_opt:
-      - seccomp:unconfined
+
   
   # worker service
   # The Celery worker for processing the queue.
@@ -247,7 +247,8 @@ services:
     depends_on:
       - db
       - redis
-    user: "1001:1001"  # Adicione esta linha
+    #user: "1001:1001"  # Adicione esta linha
+    user: "0:0"  # <--- ADICIONE ESTA LINHA
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage

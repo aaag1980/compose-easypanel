@@ -223,9 +223,11 @@ services:
     depends_on:
       - db
       - redis
+    user: "1001:1001"  # Adicione esta linha
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage
+      
     networks:
       - ssrf_proxy_network
       - default
@@ -245,6 +247,7 @@ services:
     depends_on:
       - db
       - redis
+    user: "1001:1001"  # Adicione esta linha
     volumes:
       # Mount the storage directory to the container, for storing user files.
       - ./volumes/app/storage:/app/api/storage

@@ -229,7 +229,9 @@ services:
     networks:
       - ssrf_proxy_network
       - default
-
+    security_opt:
+      - seccomp:unconfined
+  
   # worker service
   # The Celery worker for processing the queue.
   worker:

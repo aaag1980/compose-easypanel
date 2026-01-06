@@ -549,7 +549,7 @@ services:
       #- "${EXPOSE_PLUGIN_DEBUGGING_PORT:-5003}:${PLUGIN_DEBUGGING_PORT:-5003}"
       
       # Mapeie ambas as portas para o host se precisar de acesso externo
-      #- "${PLUGIN_DAEMON_PORT:-5006}:${PLUGIN_DAEMON_PORT:-5006}"
+      - "${PLUGIN_DAEMON_PORT:-5006}:${PLUGIN_DAEMON_PORT:-5006}"
       - "${EXPOSE_PLUGIN_DEBUGGING_PORT:-5005}:${PLUGIN_DEBUGGING_PORT:-5005}"
     
     volumes:

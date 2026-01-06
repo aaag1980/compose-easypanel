@@ -476,7 +476,7 @@ services:
       PIP_MIRROR_URL: ${PIP_MIRROR_URL:-}
     volumes:
       - ./volumes/sandbox/dependencies:/dependencies
-      - ./volumes/sandbox/conf:/conf
+     # - ./volumes/sandbox/conf:/conf
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8194/health"]
     networks:
@@ -497,7 +497,7 @@ services:
       DIFY_INNER_API_URL: ${PLUGIN_DIFY_INNER_API_URL:-http://api:5001}
       DIFY_INNER_API_KEY: ${PLUGIN_DIFY_INNER_API_KEY:-QaHbTe77CtuXmsfyhR7+vRjI/+XbV1AaFy691iy+kGDv2Jvy0/eAh8Y1}
       PLUGIN_REMOTE_INSTALLING_HOST: ${PLUGIN_DEBUGGING_HOST:-0.0.0.0}
-      PLUGIN_REMOTE_INSTALLING_PORT: ${PLUGIN_DEBUGGING_PORT:-5003}
+      PLUGIN_REMOTE_INSTALLING_PORT: ${PLUGIN_DEBUGGING_PORT:-5005}
       PLUGIN_WORKING_PATH: ${PLUGIN_WORKING_PATH:-/app/storage/cwd}
       FORCE_VERIFYING_SIGNATURE: ${FORCE_VERIFYING_SIGNATURE:-true}
       PYTHON_ENV_INIT_TIMEOUT: ${PLUGIN_PYTHON_ENV_INIT_TIMEOUT:-120}
